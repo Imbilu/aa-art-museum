@@ -1,5 +1,6 @@
 import { useParams, Route } from 'react-router-dom/cjs/react-router-dom.min';
 import ArtImageTile from '../ArtImageTile';
+import ArtDescription from '../ArtDescription';
 
 function GalleryView({ galleries }) {
     const { galleryId } = useParams();
@@ -7,8 +8,6 @@ function GalleryView({ galleries }) {
     const galleryChoice = galleries.find(
         (gallery) => gallery.galleryid === Number(galleryId)
     );
-
-    let images = [];
 
     return (
         <div>
@@ -23,6 +22,12 @@ function GalleryView({ galleries }) {
                         art={object.images}
                     />
                 ))}
+            </Route>
+            <Route path="/galleries/:galleryId/art/:artId">
+                <ArtDescription
+                    // key={galleryChoice.id}
+                    gallery={galleryChoice}
+                />
             </Route>
         </div>
     );
